@@ -7,126 +7,593 @@ meta:
   modified: 1769580987483
   description: ""
 collection:
-  - url: localhost:8060/customers
-    name: RestCreateCustomer
+  - name: SOAP
     meta:
-      id: req_5fa77644c2b140159e96e61aee363e0d
-      created: 1769581057808
-      modified: 1769587497520
-      isPrivate: false
+      id: fld_e42e9343185342649fbc9ac7773a8417
+      created: 1769632043654
+      modified: 1769632043654
+      sortKey: -1769632043654
       description: ""
-      sortKey: -1769581057808
-    method: POST
-    body:
-      mimeType: application/json
-      text: |-
-        {
-        	"customerid": "20021",
-        	"firstname": "Nihar",
-        	"lastname": "Malali",
-        	"email": "nihar21@example.com",
-        	"phone": "+1-999-1111",
-        	"address": {
-        		"street": "1 Test St",
-        		"city": "McKinney",
-        		"state": "TX",
-        		"zip": "75071",
-        		"country": "USA"
-        	}
-        }
-    headers:
-      - name: Content-Type
-        value: application/json
-      - name: User-Agent
-        value: insomnia/12.3.0
-        description: ""
-        disabled: false
-    settings:
-      renderRequestBody: true
-      encodeUrl: true
-      followRedirects: global
-      cookies:
-        send: true
-        store: true
-      rebuildPath: true
-  - url: localhost:8060/customers/20021
-    name: RestGetCustomer
+    children:
+      - name: CustomerSoapService
+        meta:
+          id: fld_0a6e7339214d4822905501c7b516a302
+          created: 1769632130207
+          modified: 1769632295744
+          sortKey: -1769632295697
+          description: ""
+        children:
+          - url: ""
+            name: create_customer
+            meta:
+              id: req_8d519ef016cb49d795ad1b5c1cb9f825
+              created: 1769632130208
+              modified: 1769632130208
+              isPrivate: false
+              description: ""
+              sortKey: -1769632127845
+            method: POST
+            body:
+              mimeType: text/plain
+              text: >-
+                
+                <soapenv:Envelope
+                xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+                 <soapenv:Header>
+                  <!-- The Security element should be removed if WS-Security is not enabled on the SOAP target-url -->
+                  <wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+                   <wsse:UsernameToken>
+                    <wsse:Username>string</wsse:Username>
+                    <wsse:Password>string</wsse:Password>
+                    <wsse:Nonce EncodingType="string">string</wsse:Nonce>
+                    <wsu:Created>string</wsu:Created>
+                   </wsse:UsernameToken>
+                   <wsu:Timestamp wsu:Id="string">
+                    <wsu:Created>string</wsu:Created>
+                    <wsu:Expires>string</wsu:Expires>
+                   </wsu:Timestamp>
+                  </wsse:Security>
+                 </soapenv:Header>
+                 <soapenv:Body>
+                  <tns:create_customer xmlns:tns="spyne.customers.soap"><!-- mandatory -->
+                   <tns:customerid>string</tns:customerid>
+                   <tns:name>string</tns:name>
+                   <tns:email>string</tns:email>
+                   <tns:age>3</tns:age>
+                  </tns:create_customer>
+                 </soapenv:Body>
+                </soapenv:Envelope>
+            headers:
+              - name: SOAPAction
+                value: create_customer
+              - name: Content-Type
+                value: text/xml
+              - name: Accept
+                value: application/xml
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8067/
+            name: get_customer
+            meta:
+              id: req_eb7fdc6859ad41fe9327f69a808f8846
+              created: 1769632130209
+              modified: 1769632254056
+              isPrivate: false
+              description: ""
+              sortKey: -1769632127844
+            method: POST
+            body:
+              mimeType: text/plain
+              text: >-
+                
+                <soapenv:Envelope
+                xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+                 <soapenv:Header>
+                  <!-- The Security element should be removed if WS-Security is not enabled on the SOAP target-url -->
+                  <wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+                   <wsse:UsernameToken>
+                    <wsse:Username>string</wsse:Username>
+                    <wsse:Password>string</wsse:Password>
+                    <wsse:Nonce EncodingType="string">string</wsse:Nonce>
+                    <wsu:Created>string</wsu:Created>
+                   </wsse:UsernameToken>
+                   <wsu:Timestamp wsu:Id="string">
+                    <wsu:Created>string</wsu:Created>
+                    <wsu:Expires>string</wsu:Expires>
+                   </wsu:Timestamp>
+                  </wsse:Security>
+                 </soapenv:Header>
+                 <soapenv:Body>
+                  <tns:get_customer xmlns:tns="spyne.customers.soap"><!-- mandatory -->
+                   <tns:customerid>20001</tns:customerid>
+                  </tns:get_customer>
+                 </soapenv:Body>
+                </soapenv:Envelope>
+            headers:
+              - name: SOAPAction
+                value: get_customer
+              - name: Content-Type
+                value: text/xml
+              - name: Accept
+                value: application/xml
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: ""
+            name: update_customer_email
+            meta:
+              id: req_2d2731be5f93491ebc5487debdde7b9e
+              created: 1769632130210
+              modified: 1769632130210
+              isPrivate: false
+              description: ""
+              sortKey: -1769632127843
+            method: POST
+            body:
+              mimeType: text/plain
+              text: >-
+                
+                <soapenv:Envelope
+                xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+                 <soapenv:Header>
+                  <!-- The Security element should be removed if WS-Security is not enabled on the SOAP target-url -->
+                  <wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+                   <wsse:UsernameToken>
+                    <wsse:Username>string</wsse:Username>
+                    <wsse:Password>string</wsse:Password>
+                    <wsse:Nonce EncodingType="string">string</wsse:Nonce>
+                    <wsu:Created>string</wsu:Created>
+                   </wsse:UsernameToken>
+                   <wsu:Timestamp wsu:Id="string">
+                    <wsu:Created>string</wsu:Created>
+                    <wsu:Expires>string</wsu:Expires>
+                   </wsu:Timestamp>
+                  </wsse:Security>
+                 </soapenv:Header>
+                 <soapenv:Body>
+                  <tns:update_customer_email xmlns:tns="spyne.customers.soap"><!-- mandatory -->
+                   <tns:customerid>string</tns:customerid>
+                   <tns:new_email>string</tns:new_email>
+                  </tns:update_customer_email>
+                 </soapenv:Body>
+                </soapenv:Envelope>
+            headers:
+              - name: SOAPAction
+                value: update_customer_email
+              - name: Content-Type
+                value: text/xml
+              - name: Accept
+                value: application/xml
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: ""
+            name: delete_customer
+            meta:
+              id: req_c697679a089f41fe9a5aa071e787aa43
+              created: 1769632130210
+              modified: 1769632130210
+              isPrivate: false
+              description: ""
+              sortKey: -1769632127842
+            method: POST
+            body:
+              mimeType: text/plain
+              text: >-
+                
+                <soapenv:Envelope
+                xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+                 <soapenv:Header>
+                  <!-- The Security element should be removed if WS-Security is not enabled on the SOAP target-url -->
+                  <wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+                   <wsse:UsernameToken>
+                    <wsse:Username>string</wsse:Username>
+                    <wsse:Password>string</wsse:Password>
+                    <wsse:Nonce EncodingType="string">string</wsse:Nonce>
+                    <wsu:Created>string</wsu:Created>
+                   </wsse:UsernameToken>
+                   <wsu:Timestamp wsu:Id="string">
+                    <wsu:Created>string</wsu:Created>
+                    <wsu:Expires>string</wsu:Expires>
+                   </wsu:Timestamp>
+                  </wsse:Security>
+                 </soapenv:Header>
+                 <soapenv:Body>
+                  <tns:delete_customer xmlns:tns="spyne.customers.soap"><!-- mandatory -->
+                   <tns:customerid>string</tns:customerid>
+                  </tns:delete_customer>
+                 </soapenv:Body>
+                </soapenv:Envelope>
+            headers:
+              - name: SOAPAction
+                value: delete_customer
+              - name: Content-Type
+                value: text/xml
+              - name: Accept
+                value: application/xml
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+  - name: REST
     meta:
-      id: req_a050d900e2184834b30d569a39ce5638
-      created: 1769587502118
-      modified: 1769587573728
-      isPrivate: false
+      id: fld_da5abde6bd6b4a65bc2ffa9ef05074e4
+      created: 1769632317385
+      modified: 1769632317385
+      sortKey: -1769632317385
       description: ""
-      sortKey: -1769587502118
-    method: GET
-    headers:
-      - name: User-Agent
-        value: insomnia/12.3.0
-        description: ""
-        disabled: false
-    settings:
-      renderRequestBody: true
-      encodeUrl: true
-      followRedirects: global
-      cookies:
-        send: true
-        store: true
-      rebuildPath: true
-  - url: localhost:50051
-    name: CreateCustomer
+    children:
+      - url: localhost:8060/customers
+        name: RestCreateCustomer
+        meta:
+          id: req_5fa77644c2b140159e96e61aee363e0d
+          created: 1769581057808
+          modified: 1769632408666
+          isPrivate: false
+          description: ""
+          sortKey: -1769632362970
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"customerid": "20021",
+            	"firstname": "Nihar",
+            	"lastname": "Malali",
+            	"email": "nihar21@example.com",
+            	"phone": "+1-999-1111",
+            	"address": {
+            		"street": "1 Test St",
+            		"city": "McKinney",
+            		"state": "TX",
+            		"zip": "75071",
+            		"country": "USA"
+            	}
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8060/customers/20021
+        name: RestGetCustomer
+        meta:
+          id: req_a050d900e2184834b30d569a39ce5638
+          created: 1769587502118
+          modified: 1769632398363
+          isPrivate: false
+          description: ""
+          sortKey: -1769632363020
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _._base_ }}/customers"
+        name: List Customers
+        meta:
+          id: req_48c1d51ebb7e4cdf90c9ccf0a3f48872
+          created: 1769624627100
+          modified: 1769632367112
+          isPrivate: false
+          description: Docstring for list_customers
+          sortKey: -1769632362520
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _._base_ }}/customers"
+        name: Create Customer
+        meta:
+          id: req_bcc38604e2d640968695fd505b87cf82
+          created: 1769624627100
+          modified: 1769632396921
+          isPrivate: false
+          description: |-
+            Docstring for create_customer
+
+            :param customer: Description
+            :type customer: Customer
+          sortKey: -1769632362920
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "customerid": "string",
+              "firstname": "string",
+              "lastname": "string",
+              "email": "user@example.com",
+              "phone": "string",
+              "address": null
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _._base_ }}/health"
+        name: Health
+        meta:
+          id: req_c5e837e7f5224f28aef553b5e718497b
+          created: 1769624627100
+          modified: 1769632391632
+          isPrivate: false
+          description: Docstring for health
+          sortKey: -1769632362620
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _._base_ }}/customers/20021"
+        name: Get Customer
+        meta:
+          id: req_0904526314a64bb983740d91798a5c4a
+          created: 1769624627101
+          modified: 1769632362450
+          isPrivate: false
+          description: |-
+            Docstring for get_customer
+
+            :param customerid: Description
+            :type customerid: str
+          sortKey: -1769632362420
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8060//customers/{{ _.base_url }}
+        name: Delete Customer
+        meta:
+          id: req_9c1f46b7aad24d6fb4229773afd34a1d
+          created: 1769624627101
+          modified: 1769632393728
+          isPrivate: false
+          description: |-
+            Docstring for delete_customer
+
+            :param customerid: Description
+            :type customerid: str
+          sortKey: -1769632362720
+        method: DELETE
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _._base_ }}/customers/{{ _.customerid }}"
+        name: Update Customer
+        meta:
+          id: req_b524fd8a71614e25985e4b9a79895792
+          created: 1769624627101
+          modified: 1769632395508
+          isPrivate: false
+          description: |-
+            Docstring for update_customer
+
+            :param customerid: Description
+            :type customerid: str
+            :param updates: Description
+            :type updates: CustomerUpdate
+          sortKey: -1769632362820
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "firstname": null,
+              "lastname": null,
+              "email": null,
+              "phone": null,
+              "address": null
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: gRPC
     meta:
-      id: greq_55ab32c6642141fab2b9e11039d6c7c6
-      created: 1769580355489
-      modified: 1769581945462
-      isPrivate: false
+      id: fld_a0485e0cc3384644bc18ca2565a47fb6
+      created: 1769632424475
+      modified: 1769632424475
+      sortKey: -1769632424475
       description: ""
-      sortKey: -1769580355489
-    body:
-      text: |-
-        {
-        	"customer": {
-        		"customerid": "20011",
-        		"firstname": "Nihar",
-        		"lastname": "Malali",
-        		"email": "nihar1@example.com",
-        		"phone": "+1-999-1111",
-        		"address": {
-        			"street": "1 Test St",
-        			"city": "McKinney",
-        			"state": "TX",
-        			"zip": "75071",
-        			"country": "USA"
-        		}
-        	}
-        }
-    protoFileId: pf_6a9685309b964acf9769027bf07bc22f
-    protoMethodName: /customer.CustomerService/CreateCustomer
-    reflectionApi:
-      enabled: false
-      url: https://buf.build
-      apiKey: ""
-      module: buf.build/connectrpc/eliza
-  - url: localhost:50051
-    name: GetCustomerById
+    children:
+      - url: localhost:8062
+        name: CreateCustomer
+        meta:
+          id: greq_55ab32c6642141fab2b9e11039d6c7c6
+          created: 1769580355489
+          modified: 1769632435070
+          isPrivate: false
+          description: ""
+          sortKey: -1769632430876
+        body:
+          text: |-
+            {
+            	"customer": {
+            		"customerid": "20015",
+            		"firstname": "Nihar",
+            		"lastname": "Malali",
+            		"email": "nihar15@example.com",
+            		"phone": "+1-999-1111",
+            		"address": {
+            			"street": "1 Test St",
+            			"city": "McKinney",
+            			"state": "TX",
+            			"zip": "75071",
+            			"country": "USA"
+            		}
+            	}
+            }
+        protoFileId: pf_6a9685309b964acf9769027bf07bc22f
+        protoMethodName: /customer.CustomerService/CreateCustomer
+        reflectionApi:
+          enabled: false
+          url: https://buf.build
+          apiKey: ""
+          module: buf.build/connectrpc/eliza
+      - url: localhost:8062
+        name: GetCustomerById
+        meta:
+          id: greq_66771ef2a85d4223a31bf9788426416c
+          created: 1769580709237
+          modified: 1769632430801
+          isPrivate: false
+          description: ""
+          sortKey: -1769632430776
+        body:
+          text: |-
+            {
+            	"customerid": "20015"
+            }
+        protoFileId: pf_289bf553e65d404d9215b36a255b53aa
+        protoMethodName: /customer.CustomerService/GetCustomerById
+        reflectionApi:
+          enabled: false
+          url: https://buf.build
+          apiKey: ""
+          module: buf.build/connectrpc/eliza
+  - name: GraphQL
     meta:
-      id: greq_66771ef2a85d4223a31bf9788426416c
-      created: 1769580709237
-      modified: 1769581955432
-      isPrivate: false
+      id: fld_c29ae8186d8243a1900e0a117d99fb88
+      created: 1769636679088
+      modified: 1769636679088
+      sortKey: -1769636679088
       description: ""
-      sortKey: -1769580709237
-    body:
-      text: |-
-        {
-        	"customerid": "20011"
-        }
-    protoFileId: pf_289bf553e65d404d9215b36a255b53aa
-    protoMethodName: /customer.CustomerService/GetCustomerById
-    reflectionApi:
-      enabled: false
-      url: https://buf.build
-      apiKey: ""
-      module: buf.build/connectrpc/eliza
+    children:
+      - url: localhost:8061/graphql
+        name: New Request
+        meta:
+          id: req_f5b1a3468092463e983b5d943a33a6f9
+          created: 1769636683972
+          modified: 1769637627684
+          isPrivate: false
+          description: ""
+          sortKey: -1769636683972
+        method: POST
+        body:
+          mimeType: application/graphql
+          text: '{"query":"{\n  listCustomers
+            {\n    firstname\n    lastname\n    email\n    address
+            {\n      city\n      country\n      zip\n      street\n      state\n    }\n    phone\n    customerid\n  }\n}"}'
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8061/graphql
+        name: New Request
+        meta:
+          id: req_4b4bbda060d9441d953a6ce1e87b3a04
+          created: 1769637260654
+          modified: 1769637568171
+          isPrivate: false
+          description: ""
+          sortKey: -1769637260654
+        method: POST
+        body:
+          mimeType: application/graphql
+          text: '{"query":"{\n  getCustomer(customerid: \"20011\")
+            {\n    customerid\n    address
+            {\n      city\n      country\n      state\n      street\n      zip\n    }\n    email\n    firstname\n    lastname\n    phone\n  }\n}"}'
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
 cookieJar:
   name: Default Jar
   meta:
@@ -138,5 +605,19 @@ environments:
   meta:
     id: env_7583afad14630caafca977cf839029b3a2b75d38
     created: 1769580273408
-    modified: 1769580273408
+    modified: 1769624876101
     isPrivate: false
+  data:
+    _base_: http://localhost:8060
+  subEnvironments:
+    - name: OpenAPI env example.com
+      meta:
+        id: env_f7cad465468645b99c23c82045bd9ec5
+        created: 1769624627099
+        modified: 1769624627099
+        isPrivate: false
+        sortKey: 1769624627099
+      data:
+        scheme: http
+        base_path: ""
+        host: example.com
