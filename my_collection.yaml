@@ -594,6 +594,117 @@ collection:
             send: true
             store: true
           rebuildPath: true
+  - name: Websocket
+    meta:
+      id: fld_6687e3d46dd84ccf83187d24d6cb3f86
+      created: 1769656217241
+      modified: 1769656217241
+      sortKey: -1769656217241
+      description: ""
+    children:
+      - url: ws://localhost:8068/ws/player/12345
+        name: New WebSocket Request
+        meta:
+          id: ws-req_db73a528f7374fc38f71870470e4d71b
+          created: 1769656225845
+          modified: 1769656239160
+          description: ""
+          sortKey: -1769656225846
+        settings:
+          encodeUrl: true
+          cookies:
+            store: true
+            send: true
+          followRedirects: global
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+  - name: Webhook
+    meta:
+      id: fld_6e97ab751d6c45d7a3f69df76e53834a
+      created: 1769659833387
+      modified: 1769659833387
+      sortKey: -1769659833387
+      description: ""
+    children:
+      - url: http://localhost:8072/hook
+        name: Request Hook Receiver
+        meta:
+          id: req_f02efd9bde674f03a93b5045a3d08487
+          created: 1769660385460
+          modified: 1769660481609
+          isPrivate: false
+          description: ""
+          sortKey: -1769660385460
+        method: POST
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "event_id": "test-1",
+              "event_type": "player.level.up",
+              "player_id": "12345",
+              "data": {
+                "old_level": 9,
+                "new_level": 10,
+                "score": 1000
+              }
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8069/webhooks
+        name: Request Webhook
+        meta:
+          id: req_3054c7e851274b4b927dc5e3dc15d81b
+          created: 1769660610355
+          modified: 1769664944318
+          isPrivate: false
+          description: ""
+          sortKey: -1769660385560
+        method: POST
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "url": "http://localhost:8072/hook",
+              "event_types": [
+                "player.level.up",
+                "player.achievement.unlocked",
+                "player.score.anomaly_detected"
+              ],
+              "secret": "supersecret",
+              "player_id": "12345"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
 cookieJar:
   name: Default Jar
   meta:
