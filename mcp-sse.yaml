@@ -1,0 +1,26 @@
+type: mcpClient.insomnia/5.0
+schema_version: "5.1"
+name: MCP-sse
+meta:
+  id: wrk_60680e6ef53746d897e34856a8d3fd66
+  created: 1769781512128
+  modified: 1769781512128
+  description: ""
+mcpRequest:
+  name: ""
+  url: "http://localhost:8066/sse "
+  transportType: streamable-http
+  headers:
+    - name: User-Agent
+      value: insomnia/12.3.0
+  meta:
+    id: mcp-req_9f12a49bb0b24c129b37d66ca27f2bdb
+    created: 1769781512135
+    modified: 1769781625640
+environments:
+  name: Base Environment
+  meta:
+    id: env_bf6b10d3d8c14690a72f3e102f6631d19529e80e
+    created: 1769781512132
+    modified: 1769781512132
+    isPrivate: false

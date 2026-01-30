@@ -7,6 +7,31 @@ meta:
   modified: 1769580987483
   description: ""
 collection:
+  - url: http://localhost:8066/sse
+    name: New Event Stream
+    meta:
+      id: req_a560d14096834f7599677d486dea4e8c
+      created: 1769781555006
+      modified: 1769781587955
+      isPrivate: false
+      description: ""
+      sortKey: -1769781555006
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.3.0
+        description: ""
+        disabled: false
+      - name: Accept
+        value: text/event-stream
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
   - name: SOAP
     meta:
       id: fld_e42e9343185342649fbc9ac7773a8417
@@ -705,6 +730,13 @@ collection:
             send: true
             store: true
           rebuildPath: true
+  - name: MCP
+    meta:
+      id: fld_5f8c6ab7f4cc42d4b089395d0994d144
+      created: 1769720775534
+      modified: 1769720775534
+      sortKey: -1769720775534
+      description: ""
 cookieJar:
   name: Default Jar
   meta:
